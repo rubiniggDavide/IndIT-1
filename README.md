@@ -1,1 +1,1 @@
-# IndIT-1
+# IndIT-1 project folder

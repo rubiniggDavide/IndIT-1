@@ -1,7 +1,7 @@
 # importing the required module
 import matplotlib.pyplot as plt
 
-# array of every Leibniz formula addend 
+# array of every iteration-result
 aLeibniz = []
 
 #Assigning graph characteristics

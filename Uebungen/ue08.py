@@ -74,8 +74,7 @@ while auswahl != "q":
     elif auswahl == "l":
         delWord()
     elif auswahl == "q":
-        break
-            
+        break   
     else:
         getWord()
 

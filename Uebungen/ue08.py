@@ -12,8 +12,13 @@ woerterbuch_deutsch = ["Apfel", "Birne", "Kirsche", "Melone", "Marille", "Pfirsi
 woerterbuch_englisch = ["apple", "pear", "cerry", "melon", "apricot", "peach"]
 
 def addWord(deutschesWort, englischesWort):
-    woerterbuch_deutsch.append(deutschesWort)
-    woerterbuch_englisch.append(englischesWort)
+    try:
+        searchWord(deutschesWort)
+        print("Wort bereits im Wörterbuch")
+    except:
+        woerterbuch_deutsch.append(deutschesWort)
+        woerterbuch_englisch.append(englischesWort)
+    
 def searchWord(wordInput):
     index = 0
     for wort in woerterbuch_deutsch:  
@@ -29,33 +34,51 @@ def searchWord(wordInput):
             index +=1    
         
         if index == len(woerterbuch_englisch):
-            print("Das Wort steht nicht im Wörterbuch")
-            return -1
+            raise Exception("Das Wort steht nicht im Wörterbuch")
     return (woerterbuch_deutsch[index], woerterbuch_englisch[index], index)
 
+def delWord():
+    try:
+        output = searchWord(input("Welches Wort wollen Sie löschen?: "))
+        woerterbuch_deutsch.remove(output[0])
+        woerterbuch_englisch.remove(output[1])
+    except Exception as e:
+        print(e)
+        
+def getWord():
+    try:
+        output = searchWord(input("Zu übersetzendes Wort: "))
+        print(output[0] + "[DE]")
+        print(output[1]+ "[EN]")
+    except Exception as e:
+        print(e)
+        
+def eingabeBefehl():
+    while True:
+        auswahl = input("Befehl? \n[E]infügen \n[L]öschen \n[A]bfrage \n[Q]uit: ")
+        if auswahl.lower() == "e" or  auswahl.lower() =="l" or auswahl.lower() =="a" or auswahl.lower() =="q":
+            return auswahl.lower()
+        else:
+            print("Falsche Eingabe!")
+    
 addWord("Ananas", "pineapple")
 addWord("Banane", "banana")
 addWord("Drachenfrucht", "pitaya")
 
 auswahl = "x"
-while auswahl.lower != "q":
-    auswahl = input("Befehl? \n[E]infügen \n[L]öschen \n[A]bfrage \n[Q]uit: ")
-    if auswahl.lower() == "e":
+while auswahl != "q":
+    auswahl = eingabeBefehl()
+    if auswahl == "e":
         addWord(input("Deutsches Wort eingeben: "), input("Englisches Wort eingeben: "))
         
-    elif auswahl.lower() == "l":
-        output = searchWord(input("Welches Wort wollen Sie löschen?: "))
-        if output != -1:
-            woerterbuch_deutsch.remove(output[0])
-            woerterbuch_englisch.remove(output[1])
-    elif auswahl.lower() == "q":
+    elif auswahl == "l":
+        delWord()
+    elif auswahl == "q":
         break
             
     else:
-        output = searchWord(input("Zu übersetzendes Wort: "))
-        if output != -1:
-            print(output[0] + "[DE]")
-            print(output[1]+ "[EN]")
+        getWord()
+
     print(woerterbuch_deutsch)
     print(woerterbuch_englisch)
     

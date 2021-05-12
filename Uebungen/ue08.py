@@ -65,8 +65,7 @@ addWord("Ananas", "pineapple")
 addWord("Banane", "banana")
 addWord("Drachenfrucht", "pitaya")
 
-auswahl = "x"
-while auswahl != "q":
+while True:
     auswahl = eingabeBefehl()
     if auswahl == "e":
         addWord(input("Deutsches Wort eingeben: "), input("Englisches Wort eingeben: "))

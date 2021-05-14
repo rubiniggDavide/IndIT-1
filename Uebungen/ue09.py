@@ -1,10 +1,18 @@
 # Dictionaries
-woerterbuch = {"Apfel": "apple",
+woerterbuchDeutsch = {"Apfel": "apple",
                "Birne": "pear"}
+woerterbuchEnglisch = {"apple": "Apfel",
+               "pear": "Birne"}
 try:
-    print(woerterbuch[input("Begriff: ")]) # nur KeyError
+    begriff = input("Begriff: ")
+    print(woerterbuchDeutsch[begriff]) # nur KeyError
 except:
-    print("Wort existiert nicht")
+    try:
+        print(woerterbuchEnglisch[begriff])
+    except:
+        print("Wort existiert nicht")
+    
+    
 
 while True: # EIngabe bis Zahl eingegeben wurde
     try:
